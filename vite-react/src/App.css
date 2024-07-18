@@ -1,0 +1,61 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: #282d35;
+}
+.navigation {
+  background-color: #21222a;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: space-between;
+  height: 90px;
+  padding: 30px 25px;
+  color: #61dafb;
+}
+nav > h3,
+nav > h4 {
+  margin: 0;
+}
+.logo {
+  height: 30px;
+  margin-right: 7px;
+}
+nav > h3 {
+  margin-right: auto;
+  color: #61dafb;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+nav > h4 {
+  color: #deebf8;
+  font-weight: 600;
+}
+
+.main {
+  padding: 57px 27px;
+  color: white;
+  background-image: url("assets/reactjs-icon.png");
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+.main h1 {
+  margin: 0;
+  font-size: 39px;
+  letter-spacing: -0.05em;
+}
+.main ul {
+  margin-top: 46px;
+}
+.main li {
+  line-height: 19px;
+  padding-block: 10px;
+}
+.main li::marker {
+  font-size: 1.4rem;
+  color: #61dafb;
+}
