@@ -3,6 +3,7 @@ import About from "./About";
 import Footer from "./Footer";
 export default function Card() {
   return (
+    <div className="w-2/5 h-[100vh] py-11 px-28 bg-zinc-800 flex justify-center">
     <div className="h-full w-9/12 bg-[#1a1b21] rounded-xl text-white text-center">
       <img
         src={image}
@@ -21,6 +22,7 @@ export default function Card() {
       <div className="bg-neutral-900 w-full rounded-b-xl px-8">
         <Footer />
       </div>
+    </div>
     </div>
   );
 }
