@@ -1,26 +1,25 @@
-import image from "../../public/images/profile.png";
+import image from "/images/profile.png";
+import About from "./About";
+import Footer from "./Footer";
 export default function Card() {
   return (
-    <div className="card">
-      <img src={image} alt="" />
-      <div className="intro">
-        <h1>Laura Smith</h1>
-        <p>Frontend Developer </p>
-        <p>laurasmith.website</p>
-        <button>Email</button>
+    <div className="h-full w-9/12 bg-[#1a1b21] rounded-xl text-white text-center">
+      <img
+        src={image}
+        alt=""
+        className="w-full h-72 rounded-t-xl object-cover "
+      />
+      <div className="px-9 flex flex-col gap-2 my-5">
+        <h1 className="font-bold text-2xl">Laura Smith</h1>
+        <p className="text-xs text-[#F3BF99]">Frontend Developer </p>
+        <p className="text-[10px]">laurasmith.website</p>
+        <button className="w-full h-9 text-center rounded-md bg-white text-gray-700 font-medium text-sm">
+          Email
+        </button>
       </div>
-      <div className="about">
-        <h3>About</h3>
-        <p>
-          I am a frontend developer with a particular interest in making things
-          simple and automating daily tasks. I try to keep up with security and
-          best practices, and am always looking for new things to learn.
-        </p>
-        <h3>Interests</h3>
-        <p>
-          Food expert. Music scholar. Reader. Internet fanatic. Bacon buff.
-          Entrepreneur. Travel geek. Pop culture ninja. Coffee fanatic.
-        </p>
+      <About />
+      <div className="bg-neutral-900 w-full rounded-b-xl px-8">
+        <Footer />
       </div>
     </div>
   );
