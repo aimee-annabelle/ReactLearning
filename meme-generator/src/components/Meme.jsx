@@ -1,11 +1,19 @@
 import { useState } from "react";
 import memeImages from "../memeData.js";
 export default function Meme() {
-  const [memeImage, setMemeImage] = useState("");
+  const [meme, setMeme] = useState({
+    topText: "",
+    bottomText: "",
+    randomImage: "",
+  });
+  const [allMemeImages, setAllMemeImages] = useState(memeImages);
   const getImage = () => {
-    const memeArray = memeImages.data.memes;
+    const memeArray = allMemeImages.data.memes;
     const randomImage = memeArray[Math.floor(Math.random() * memeArray.length)];
-    setMemeImage(randomImage.url);
+    setMeme((prevMeme) => ({
+      ...prevMeme,
+      randomImage: randomImage.url,
+    }));
   };
   return (
     <div className="p-5 flex flex-col justify-center">
@@ -35,7 +43,7 @@ export default function Meme() {
           Get a new meme image 🖼
         </button>
       </div>
-      {memeImage && <img src={memeImage} className="p-5 w-auto h-auto" />}
+      {meme && <img src={meme.randomImage} className="p-5 w-auto h-auto" />}
     </div>
   );
 }
