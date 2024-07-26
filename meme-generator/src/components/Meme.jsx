@@ -1,12 +1,22 @@
-import { useState } from "react";
-import memeImages from "../memeData.js";
+import { useState, useEffect } from "react";
 export default function Meme() {
+  const [allMemeImages, setAllMemeImages] = useState({});
+  console.log(allMemeImages);
+  useEffect(() => {
+    fetch('https://api.imgflip.com/get_memes').then(response =>console.log(response.json())).then(data => setAllMemeImages(data))
+  }, []);
   const [meme, setMeme] = useState({
     topText: "",
     bottomText: "",
-    randomImage: "",
+    randomImage: allMemeImages.data.memes[0].url,
   });
-  const [allMemeImages, setAllMemeImages] = useState(memeImages);
+  function handleChange(event) {
+    const { value, name } = event.target;
+    setMeme((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  }
   const getImage = () => {
     const memeArray = allMemeImages.data.memes;
     const randomImage = memeArray[Math.floor(Math.random() * memeArray.length)];
@@ -25,6 +35,9 @@ export default function Meme() {
             type="text"
             placeholder="Top Text"
             className="w-full p-3 rounded-lg border indent-3"
+            name="topText"
+            value={meme.topText}
+            onChange={handleChange}
           />
         </div>
         <div>
@@ -34,6 +47,9 @@ export default function Meme() {
             type="text"
             placeholder="Bottom Text"
             className="w-full p-3 rounded-lg border indent-3"
+            name="bottomText"
+            value={meme.bottomText}
+            onChange={handleChange}
           />
         </div>
         <button
@@ -43,7 +59,17 @@ export default function Meme() {
           Get a new meme image 🖼
         </button>
       </div>
-      {meme && <img src={meme.randomImage} className="p-5 w-auto h-auto" />}
+      {meme && (
+        <div className="relative p-5 text-white font-black text-5xl text-center">
+          <img src={meme.randomImage} className=" w-full h-full" />
+          <h2 className="absolute top-10 left-1/2 -translate-x-1/2 text-center">
+            {meme.topText}
+          </h2>
+          <h2 className="absolute bottom-10 left-1/2 -translate-x-1/2 uppercase shadow-2xl shadow-black text-center">
+            {meme.bottomText}
+          </h2>
+        </div>
+      )}
     </div>
   );
 }
