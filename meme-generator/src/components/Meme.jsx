@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 export default function Meme() {
-  const [allMemeImages, setAllMemeImages] = useState({});
-  console.log(allMemeImages);
-  useEffect(() => {
-    fetch('https://api.imgflip.com/get_memes').then(response =>console.log(response.json())).then(data => setAllMemeImages(data))
+  useEffect(function () {
+    console.log("use effect ran");
+    fetch("https://api.imgflip.com/get_memes")
+      .then((response) => response.json())
+      .then((data) => setAllMemeImages(data.data.memes));
   }, []);
+  const [allMemeImages, setAllMemeImages] = useState([]);
   const [meme, setMeme] = useState({
     topText: "",
     bottomText: "",
-    randomImage: allMemeImages.data.memes[0].url,
+    randomImage: "https://i.imgflip.com/3i7p.jpg",
   });
   function handleChange(event) {
     const { value, name } = event.target;
@@ -18,8 +20,8 @@ export default function Meme() {
     }));
   }
   const getImage = () => {
-    const memeArray = allMemeImages.data.memes;
-    const randomImage = memeArray[Math.floor(Math.random() * memeArray.length)];
+    const randomImage =
+      allMemeImages[Math.floor(Math.random() * allMemeImages.length)];
     setMeme((prevMeme) => ({
       ...prevMeme,
       randomImage: randomImage.url,
